@@ -11,7 +11,8 @@ function killProcess(){
         printf "Please enter the name of process!\n"
         return
     else
-        pid=$(ps -ef | grep -E $processName | grep -v "grep" | awk '{print $0}')
+        pid=$(ps -ef | grep -E $processName | grep -v "grep" | awk '{print $2}')
+		pidArray=$(ps -ef | grep -E $processName | grep -v "grep" | awk '{print $0}')
         pidCount=$(ps -ef | grep -E $processName | grep -v "grep" | awk '{print $2}' | wc -l)
        # printf "Process pid is: "$pid"\n"
     fi
@@ -29,7 +30,7 @@ function killProcess(){
 	    exit $?
 	else
 	    printf "Find these process:\n"
-	    printf "${pid[@]}\n"
+	    printf "${pidArray[@]}\n"
 	    read -p "Please enter the pid:" pid
 	    kill -9 $pid 
 	    exit $?
