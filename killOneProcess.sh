@@ -18,7 +18,7 @@ function killProcess(){
     fi
     
     
-    if [[ $pid = "" ]]
+    if [[ -z $pid ]]
     then
         printf "Not found the process!\n" 
         return
